@@ -104,6 +104,46 @@ switch (value) {
 });
 }
 
+function saveLocalTodos(todo) {
+       // Check
+let todos;
+
+       // si il a deja rajout dans todos
+if (localStorage.getItem("todos") !== null) {
+        todos = JSON.parse(localStorage.getItem("todos"));
+} else {
+        todos = [];
+}
+
+todos.push(todo);
+localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function getTodos() {
+let todos;
+
+       // si il a deja un item rajout dans todo
+if (localStorage.getItem("todos") !== null) {
+        todos = JSON.parse(localStorage.getItem("todos"));
+} else {
+        todos = [];
+}
+// creation du todo
+todos.forEach(function (todo) {
+        createComponents(todo);
+});
+}
+function removeLocalTodos(todo) {
+        let todos;
+        if (localStorage.getItem("todos") !== null) {
+                todos = JSON.parse(localStorage.getItem("todos"));
+        } else {
+                todos = [];
+        }
+        const todoIndex = todo.children[0].innerText;
+        todos.splice(todos.indexOf(todoIndex), 1);
+        localStorage.setItem("todos", JSON.stringify(todos));
+        }
 
 
 
